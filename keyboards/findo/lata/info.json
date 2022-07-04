@@ -1,0 +1,14 @@
+{
+  "keyboard_name": "Findo Lata",
+  "debounce": 5,
+  "diode_direction": "COL2ROW",
+  "matrix_pins": {
+    "cols": [ "A0", "A2", "A4", "A6", "B0", "B2", "A8", "A8", "A8", "A8", "A8", "A8" ],
+    "rows": [ "B1", "A7", "A5", "A3", "A1", "A9", "A9", "A9", "A9", "A9" ]
+  },
+  "usb": {
+    "vid": "0x3744",
+    "pid": "0x0100",
+    "device_version": "0.0.1"
+  }
+}
