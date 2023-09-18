@@ -1,45 +1,72 @@
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Build Inputs'
+name: "Build Inputs"
 on:
   workflow_dispatch:
     inputs:
       keyboard:
-        description: 'Keyboard'
+        description: "Keyboard"
         required: true
       alphas:
-        description: 'Miryoku Alphas'
+        description: "Miryoku Alphas"
         required: false
-        default: 'default'
+        default: "default"
+        type: choice
+        options:
+          - "default"
+          - "AZERTY"
+          - "BEAKL15"
+          - "Colemak"
+          - "ColemakDHK"
+          - "Dvorak"
+          - "Halmak"
+          - "QWERTY"
+          - "QWERTZ"
+          - "Workman"
       nav:
-        description: 'Miryoku Nav'
+        description: "Miryoku Nav"
         required: false
-        default: 'default'
+        default: "default"
+        type: choice
+        options:
+          - "default"
+          - "invertedT"
+          - "vi"
       clipboard:
-        description: 'Miryoku Clipboard'
+        description: "Miryoku Clipboard"
         required: false
-        default: 'default'
+        default: "default"
+        type: choice
+        options:
+          - "default"
+          - "fun"
+          - "Mac"
+          - "Win"
       layers:
-        description: 'Miryoku Layers'
+        description: "Miryoku Layers"
         required: false
-        default: 'default'
+        default: "default"
+        type: choice
+        options:
+          - "default"
+          - "flip"
       mapping:
-        description: 'Miryoku Mapping'
+        description: "Miryoku Mapping"
         required: false
-        default: 'default'
+        default: "default"
       rules:
-        description: 'custom_rules.mk'
+        description: "custom_rules.mk"
         required: false
-        default: 'default'
+        default: "default"
       custom_config:
-        description: 'custom_config.h'
+        description: "custom_config.h"
         required: false
-        default: 'default'
+        default: "default"
       merge:
-        description: 'Merge QMK Branches'
+        description: "Merge QMK Branches"
         required: false
-        default: 'default'
+        default: "default"
 jobs:
   process-inputs:
     runs-on: ubuntu-latest
@@ -60,7 +87,7 @@ jobs:
           set-output()
           {
             json=`echo "$2" | jq -cnR 'inputs | split(",";"")'`
-            echo "::set-output name=$1::$json"
+            echo "$1=$json" >> $GITHUB_OUTPUT
           }
           set-output "keyboard" "${{ github.event.inputs.keyboard }}"
           set-output "alphas" "${{ github.event.inputs.alphas }}"
